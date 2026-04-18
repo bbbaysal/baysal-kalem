@@ -1,0 +1,18 @@
+[Desktop Entry]
+Version=1.0
+Name=Baysal Kalem
+Name[pt]=Caneta Baysal
+Name[tr]=Baysal Kalem
+Type=Application
+Comment=Screen Drawing Tool
+Comment[pt]=Ferramenta de desenho de ecrã
+Comment[tr]=Ekran Çizim Aracı
+Terminal=false
+Exec=baysal-kalem
+Icon=baysal-kalem
+Categories=Qt;Education;X-Pardus-Apps;
+GenericName=Screen Drawing Tool
+GenericName[pt]=Ferramenta de desenho de ecrã
+GenericName[tr]=Ekran Çizim Aracı
+MimeType=application/x-baysal-kalem;application/pdf
+StartupWMClass=baysal-kalem

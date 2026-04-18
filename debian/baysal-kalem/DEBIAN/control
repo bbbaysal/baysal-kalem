@@ -1,0 +1,12 @@
+Package: baysal-kalem
+Version: 4.2.5
+Architecture: amd64
+Maintainer: Bekir Bergin BAYSAL <bekirberginbaysal@gmail.com>
+Installed-Size: 14823
+Depends: libarchive13 (>= 3.0.4), libc6 (>= 2.34), libdbus-1-3 (>= 1.9.14), libgcc-s1 (>= 3.0), libpoppler-qt5-1 (>= 0.24.5), libqt5core5a (>= 5.15.1), libqt5gui5 (>= 5.10.0) | libqt5gui5-gles (>= 5.10.0), libqt5printsupport5 (>= 5.0.2), libqt5widgets5 (>= 5.0.2), libstdc++6 (>= 5.2)
+Recommends: qttranslations5-l10n
+Section: utils
+Priority: optional
+Homepage: https://bekirberginbaysal.blogspot.com/
+Description: Baysal Kalem - Screen Drawing Tool.
+ Fast, useful tool for drawing on screen.

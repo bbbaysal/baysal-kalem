@@ -1,0 +1,22 @@
+Source: baysal-kalem
+Section: utils
+Priority: optional
+Maintainer: Bekir Bergin BAYSAL <bekirberginbaysal@gmail.com>
+Build-Depends: meson, ninja-build,
+         libarchive-dev,
+         pkgconf,
+         qtbase5-dev,
+         qtchooser,
+         libqt5svg5-dev,
+         libpoppler-qt5-dev,
+         libdbus-1-dev,
+Standards-Version: 4.3.0
+Homepage: https://bekirberginbaysal.blogspot.com/
+
+Package: baysal-kalem
+Architecture: any
+Recommends: qttranslations5-l10n
+Depends: ${shlibs:Depends},
+         ${misc:Depends}
+Description: Baysal Kalem - Screen Drawing Tool.
+ Fast, useful tool for drawing on screen.
