@@ -1,5 +1,6 @@
 # Baysal Kalem
 qt based pen application
+<img width="256" height="256" alt="ikon" src="https://github.com/user-attachments/assets/7a3d2b9b-15f9-4c26-8574-8b506db1a3ee" />
 
 ## Features
 * PDF and Web Support: Ability to annotate directly over active PDF documents and web pages.
@@ -7,6 +8,16 @@ qt based pen application
 * Mathematics Toolkit: Integrated Coordinate System and Ruler tools designed for educators.
 * Drawing Cloning: Clone and duplicate existing drawings instantly to save time.
 * Precision Lines: Vertical and horizontal line drawing tools for perfectly structured layouts.
+
+## Versiyonlar
+### 4.2.5
+* Çizim klonlama özelliği eklendi.
+* Dikey - yatay çizgi çizme araçları eklendi.
+* Kırpma simgesi, ok simgesi ile değiştirildi.
+
+### 4.2.7
+* Açı Ölçer aracı eklendi.
+* Tüm çizim ve araçlara döndürme özelliği eklendi.
 
 ## Ekran Görüntüleri / Screenshots
 <img width="92" height="553" alt="anaPanel" src="https://github.com/user-attachments/assets/32db0ef7-687e-44b3-b6f9-fff9451cb4e3" />
@@ -23,3 +34,10 @@ qt based pen application
 
 <img width="168" height="557" alt="araclar" src="https://github.com/user-attachments/assets/f04cfe9d-ee7f-4800-8672-f7265b5523ec" />
 
+<img width="375" height="522" alt="araclar1" src="https://github.com/user-attachments/assets/1fa32b94-3ece-42cf-86db-875b1b8928bb" />
+
+<img width="572" height="545" alt="döndürme1" src="https://github.com/user-attachments/assets/47015b71-6ed1-4f2f-94bd-88dc5e7901f8" />
+
+<img width="770" height="627" alt="pergel" src="https://github.com/user-attachments/assets/5fc73ccd-9a73-4e24-9e02-077138cbda00" />
+
+<img width="399" height="538" alt="kalemAyar1" src="https://github.com/user-attachments/assets/c5d48ee8-ab76-4c14-b5b1-ead19ad54fb3" />
