@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" fill="none" stroke="#ccc" stroke-width="1">
+  <!-- Grid -->
+  <path d="M0 50h1000M0 100h1000M0 150h1000M0 200h1000M0 250h1000M0 300h1000M0 350h1000M0 400h1000M0 450h1000M0 550h1000M0 600h1000M0 650h1000M0 700h1000M0 750h1000M0 800h1000M0 850h1000M0 900h1000M0 950h1000" />
+  <path d="M50 0v1000M100 0v1000M150 0v1000M200 0v1000M250 0v1000M300 0v1000M350 0v1000M400 0v1000M450 0v1000M550 0v1000M600 0v1000M650 0v1000M700 0v1000M750 0v1000M800 0v1000M850 0v1000M900 0v1000M950 0v1000" />
+  
+  <!-- Axes -->
+  <path d="M0 500h1000M500 0v1000" stroke="#333" stroke-width="4" />
+  
+  <!-- Arrows -->
+  <path d="M990 500l-20-10m20 10l-20 10M500 10l-10 20m10-20l10 20" stroke="#333" stroke-width="4" />
+  
+  <!-- Labels -->
+  <text x="515" y="40" font-family="Arial" font-size="32" font-weight="bold" fill="#333">y</text>
+  <text x="960" y="480" font-family="Arial" font-size="32" font-weight="bold" fill="#333">x</text>
+  <text x="515" y="535" font-family="Arial" font-size="32" font-weight="bold" fill="#333">0</text>
+</svg>
