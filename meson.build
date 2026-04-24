@@ -18,13 +18,14 @@ src = [
     'src/tools/icon.cpp',
     'src/tools/background.cpp',
     'src/tools/mainWindow.cpp',
+    'src/tools/color.cpp',
     'src/tools/screenshot.cpp',
     'src/tools/save-load.cpp',
     'src/tools/pen.cpp',
     'src/utils/misc.c',
 ]
 
-version = '4.2.5'
+version = run_command('dpkg-parsechangelog', '-S', 'Version', check: true).stdout().strip()
 
 subdir('po')
 subdir('debian')
