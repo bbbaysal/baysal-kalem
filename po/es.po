@@ -1,0 +1,145 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-09-17 09:37+0000\n"
+"PO-Revision-Date: 2025-12-17 11:19-0300\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.8\n"
+
+#: src/tools/pen.cpp:140 src/tools/update.cpp:42
+msgid "Size:"
+msgstr "Tamaño:"
+
+#: src/tools/pen.cpp:163
+msgid "Select Color"
+msgstr "Seleccione el color"
+
+#: src/tools/background.cpp:60
+msgid "Images"
+msgstr "Imágenes"
+
+#: src/tools/background.cpp:61 src/tools/save-load.cpp:51
+#: src/tools/save-load.cpp:81
+msgid "All Files (*.*)"
+msgstr "Todos los archivos (*.*)"
+
+#: src/tools/background.cpp:65
+msgid "Open Image File"
+msgstr "Abrir archivo de imagen"
+
+#: src/tools/background.cpp:85
+msgid "Go page"
+msgstr "Ir a la página"
+
+#: src/tools/background.cpp:86 src/SetupWidgets.cpp:348
+msgid "Page:"
+msgstr "Página:"
+
+#: src/tools/save-load.cpp:47 src/tools/save-load.cpp:77
+msgid "Pen Files (*.pen);;"
+msgstr "Archivos de lápiz (*.pen);;"
+
+#: src/tools/save-load.cpp:49 src/tools/save-load.cpp:79
+msgid "PDF Files (*.pdf);;"
+msgstr "Archivos PDF (*.pdf);;"
+
+#: src/tools/save-load.cpp:56
+msgid "Save File"
+msgstr "Guardar archivo"
+
+#: src/tools/save-load.cpp:85 src/utils/ScreenShot.cpp:65
+msgid "Open File"
+msgstr "Abrir archivo"
+
+#: src/tools/mainWindow.cpp:66 src/tools/mainWindow.cpp:316 src/main.cpp:76
+msgid "Pardus Pen"
+msgstr "Lápiz Pardus"
+
+#: src/tools/mainWindow.cpp:67
+msgid "Exit"
+msgstr "Salir"
+
+#: src/tools/mainWindow.cpp:68
+msgid "Are you sure you want to exit?"
+msgstr "¿Estás seguro de que quiere salir?"
+
+#: src/utils/ScreenShot.cpp:62
+msgid "Screenshot Saved"
+msgstr "Captura de pantalla guardada"
+
+#: src/utils/ScreenShot.cpp:63
+msgid "Screenshot saved to:"
+msgstr "Captura de pantalla guardada en:"
+
+#: src/utils/ScreenShot.cpp:66
+msgid "Open Containing Folder"
+msgstr "Abrir la carpeta contenedora"
+
+#: src/utils/ScreenShot.cpp:81
+msgid "Error Saving Screenshot"
+msgstr "Error al guardar la captura de pantalla"
+
+#: src/utils/ScreenShot.cpp:82
+msgid "Failed to save screenshot to:"
+msgstr "No se pudo guardar la captura de pantalla en:"
+
+#: src/SetupWidgets.cpp:110
+msgid "No"
+msgstr "No"
+
+#: src/SetupWidgets.cpp:115
+msgid "Yes"
+msgstr "Si"
+
+#: src/SetupWidgets.cpp:193
+msgid "Size: 10"
+msgstr "Tamaño 10"
+
+#: src/SetupWidgets.cpp:391
+msgid "Background:"
+msgstr "Fondo:"
+
+#: src/SetupWidgets.cpp:513
+msgid "Are you sure you want to quit?"
+msgstr "¿Estás seguro de que quieres salir?"
+
+#~ msgid "Info"
+#~ msgstr "Información"
+
+#~ msgid "Pen"
+#~ msgstr "Lápiz"
+
+#~ msgid "Marker"
+#~ msgstr "Marcador"
+
+#~ msgid "Eraser"
+#~ msgstr "Borrador"
+
+#~ msgid "Color:"
+#~ msgstr "Color:"
+
+#~ msgid " Color:"
+#~ msgstr " Color:"
+
+#~ msgid "Color Picker"
+#~ msgstr "Selector de color"
+
+#~ msgid "Pen Style"
+#~ msgstr "Estilo de lápiz"
+
+#~ msgid "Do you want to clear screen?"
+#~ msgstr "¿Desea borrar la pantalla?"
+
+#~ msgid "Pen Files (*.pen);;All Files (*.*)"
+#~ msgstr "Archivos de lápiz (*.pen);;Todos los archivos (*.*)"
