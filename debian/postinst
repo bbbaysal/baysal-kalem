@@ -1,0 +1,57 @@
+#!/bin/sh
+set -e
+
+# Add Baysal Kalem to Favorites and Panel for Cinnamon (Pardus ETAP)
+pin_app() {
+    USER_NAME=$1
+    USER_ID=$(id -u "$USER_NAME")
+    DESKTOP_FILE="tr.org.baysal.kalem.desktop"
+    
+    # Check if user is logged in and has a bus
+    if [ -e "/run/user/$USER_ID/bus" ]; then
+        export DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/$USER_ID/bus"
+        
+        # 1. Add to Cinnamon favorite-apps (Main Menu)
+        FAVORITES=$(su - "$USER_NAME" -c "DBUS_SESSION_BUS_ADDRESS=$DBUS_SESSION_BUS_ADDRESS gsettings get org.cinnamon favorite-apps")
+        if ! echo "$FAVORITES" | grep -q "$DESKTOP_FILE"; then
+            NEW_FAVORITES=$(echo "$FAVORITES" | sed "s/\]/, '$DESKTOP_FILE'\]/" | sed "s/\[, /\[/")
+            su - "$USER_NAME" -c "DBUS_SESSION_BUS_ADDRESS=$DBUS_SESSION_BUS_ADDRESS gsettings set org.cinnamon favorite-apps \"$NEW_FAVORITES\""
+        fi
+        
+        # 2. Add to Grouped Window List (Taskbar)
+        # Cinnamon apps are often in applets/grouped-window-list/
+        # We try to find any instance of grouped-window-list
+        IDS=$(su - "$USER_NAME" -c "DBUS_SESSION_BUS_ADDRESS=$DBUS_SESSION_BUS_ADDRESS dconf list /org/cinnamon/applets/grouped-window-list/ 2>/dev/null" || true)
+        for ID in $IDS; do
+            ID_CLEAN=$(echo "$ID" | tr -d '/')
+            PINNED=$(su - "$USER_NAME" -c "DBUS_SESSION_BUS_ADDRESS=$DBUS_SESSION_BUS_ADDRESS gsettings get org.cinnamon.applets.grouped-window-list:$ID_CLEAN pinned-apps" 2>/dev/null || echo "[]")
+            if ! echo "$PINNED" | grep -q "$DESKTOP_FILE"; then
+                NEW_PINNED=$(echo "$PINNED" | sed "s/\]/, '$DESKTOP_FILE'\]/" | sed "s/\[, /\[/")
+                su - "$USER_NAME" -c "DBUS_SESSION_BUS_ADDRESS=$DBUS_SESSION_BUS_ADDRESS gsettings set org.cinnamon.applets.grouped-window-list:$ID_CLEAN pinned-apps \"$NEW_PINNED\""
+            fi
+        done
+        
+        # 3. Add to GNOME favorite-apps
+        GNOME_FAVORITES=$(su - "$USER_NAME" -c "DBUS_SESSION_BUS_ADDRESS=$DBUS_SESSION_BUS_ADDRESS gsettings get org.gnome.shell favorite-apps 2>/dev/null" || echo "[]")
+        if [ "$GNOME_FAVORITES" != "[]" ] && ! echo "$GNOME_FAVORITES" | grep -q "$DESKTOP_FILE"; then
+            NEW_GNOME_FAVORITES=$(echo "$GNOME_FAVORITES" | sed "s/\]/, '$DESKTOP_FILE'\]/" | sed "s/\[, /\[/")
+            su - "$USER_NAME" -c "DBUS_SESSION_BUS_ADDRESS=$DBUS_SESSION_BUS_ADDRESS gsettings set org.gnome.shell favorite-apps \"$NEW_GNOME_FAVORITES\""
+        fi
+    fi
+}
+
+case "$1" in
+    configure)
+        # Attempt to pin for common ETAP users
+        # Primary user is usually 'etapadmin'
+        pin_app "etapadmin" || true
+        
+        # Also try current user if not root
+        if [ -n "$SUDO_USER" ] && [ "$SUDO_USER" != "etapadmin" ]; then
+            pin_app "$SUDO_USER" || true
+        fi
+    ;;
+esac
+
+#DEBHELPER#
+exit 0
