@@ -1,0 +1,147 @@
+#include <QApplication>
+#include <QWidget>
+#include <QPushButton>
+#include <QMainWindow>
+#include <QColorDialog>
+#include <QProcess>
+#include <QTranslator>
+
+#include <stdlib.h>
+#include <locale.h>
+#include <libintl.h>
+
+#include "tools.h"
+
+bool is_wayland;
+bool is_etap = false;
+extern void mainWindowInit();
+bool force_xwayland = false;
+int history;
+
+#ifdef DBUS
+static void accept_screenshot_permission(){
+    const char* cmd = "dbus-send --session \
+    --print-reply=literal \
+    --dest=org.freedesktop.impl.portal.PermissionStore \
+    /org/freedesktop/impl/portal/PermissionStore \
+    org.freedesktop.impl.portal.PermissionStore.SetPermission \
+    string:'screenshot' \
+    boolean:'true' \
+    string:'screenshot' \
+    string:'tr.org.baysal.kalem' \
+    array:string:'yes'";
+    int rc = system(cmd);
+    if(rc > 0){
+        printf("Failed to call dbus-send\n");
+    }
+}
+#endif
+
+static bool detect_etap(){
+    FILE *f = fopen("/etc/os-release", "r");
+    if(f == NULL){
+        return false;
+    }
+    char buffer[1024];
+    while (fgets(buffer, sizeof(buffer), f)) {
+        char needed[] = "VERSION_CODENAME=";
+        if(strncmp(needed, buffer, strlen(needed)) == 0){
+            return (strncmp(buffer+strlen(needed), "etap", 4) == 0);
+        }
+    }
+    fclose(f);
+    return false;
+}
+
+int main(int argc, char *argv[]) {
+    disable_erc();
+    settings_init();
+#ifdef ETAP19
+    QStringList args1;
+    QProcess p1;
+    args1 << "-e" << "eta-disable-gestures@pardus.org.tr";
+    p1.execute("gnome-shell-extension-tool", args1);
+
+    QStringList args2;
+    QProcess p2;
+    args2 << "set" << "org.gnome.mutter" << "overlay-key" << "''";
+    p2.execute("gsettings", args2);
+#endif
+
+    is_etap = detect_etap();
+    is_wayland = (getenv("WAYLAND_DISPLAY") != NULL);
+    // gnome wayland fullscreen compositor is buggy.
+    // Force prefer Xwayland for fix this issue.
+    if(getenv("XDG_CURRENT_DESKTOP")){
+        force_xwayland = strncmp(getenv("XDG_CURRENT_DESKTOP"), "gnome", 5) == 0 || \
+            strncmp(getenv("XDG_CURRENT_DESKTOP"), "GNOME", 5) == 0;
+    }
+    // Force use X11 or Xwayland
+    if(get_bool("xwayland") || force_xwayland){
+        setenv("QT_QPA_PLATFORM", "xcb;wayland",1);
+        is_wayland = false;
+    }
+    //Force ignore system dpi
+    setenv("QT_AUTO_SCREEN_SCALE_FACTOR", "0", 1);
+    setenv("QT_ENABLE_HIGHDPI_SCALING", "0", 1);
+    setenv("QT_SCREEN_SCALE_FACTORL", "1", 1);
+    setenv("QT_SCALE_FACTOR", "1", 1);
+    //unset qt style override, there's a bug with input when using qt6 build and kvantum
+    setenv("QT_STYLE_OVERRIDE", "", 1);
+
+    // history size
+    history = get_int("history");
+    if(history <= 0){
+        history = 50;
+    }
+
+    // translation part
+    const char *systemLanguage = getenv("LANG");
+    if (systemLanguage != nullptr) {
+        bindtextdomain("baysal-kalem", "/usr/share/locale");
+        setlocale(LC_ALL, systemLanguage);
+        textdomain("baysal-kalem");
+    } else {
+        fprintf(stderr, "WARNING: LANG environment variable not set.\n");
+    }
+
+    #ifdef QT5
+    QCoreApplication::setAttribute(Qt::AA_UseHighDpiPixmaps);
+    QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
+    #endif
+    QCoreApplication::setAttribute(Qt::AA_DontUseNativeDialogs);
+    QCoreApplication::setAttribute(Qt::AA_SynthesizeMouseForUnhandledTouchEvents, true);
+
+    QCoreApplication::setApplicationName("Baysal Kalem");
+    QCoreApplication::setOrganizationName("Pardus");
+
+    QApplication app(argc, argv);
+
+    QTranslator qtTranslator;
+    #ifdef QT5
+    (void)qtTranslator.load("qt_" + QLocale::system().name(),
+        QLibraryInfo::location(QLibraryInfo::TranslationsPath));
+    #else
+    (void)qtTranslator.load("qt_" + QLocale::system().name(),
+        QLibraryInfo::path(QLibraryInfo::TranslationsPath));
+    #endif
+    app.installTranslator(&qtTranslator);
+
+    mainWindowInit();
+
+    #ifdef DBUS
+    if(!get_bool("dbus_init")){
+        accept_screenshot_permission();
+        set_bool("dbus_init", true);
+    }
+    #endif
+
+#ifdef LIBARCHIVE
+    if (argc > 1) {
+        openFile( QString(argv[1]));
+    }
+#endif
+    return app.exec();
+}
+
+
