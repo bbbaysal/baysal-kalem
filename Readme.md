@@ -1,6 +1,9 @@
+
 # Baysal Kalem
 qt based pen application
-<img width="256" height="256" alt="ikon" src="https://github.com/user-attachments/assets/7a3d2b9b-15f9-4c26-8574-8b506db1a3ee" />
+
+<img width="256" height="256" alt="ikon" src="https://github.com/user-attachments/assets/8982756c-f5b5-44ee-b0d2-517ca78678c6" />
+
 
 ## Features
 * PDF and Web Support: Ability to annotate directly over active PDF documents and web pages.
