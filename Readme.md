@@ -2,7 +2,8 @@
 # Baysal Kalem
 qt based pen application
 
-<img width="256" height="256" alt="ikon" src="https://github.com/user-attachments/assets/8982756c-f5b5-44ee-b0d2-517ca78678c6" />
+<img width="256" height="256" alt="ikonPardus" src="https://github.com/user-attachments/assets/bf7c8bdf-0806-4a95-850b-704110abb9d4" />
+
 
 
 ## Features
